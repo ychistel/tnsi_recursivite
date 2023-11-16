@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="fr" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Récursivité &#8212; NSI</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tp/Hanoi/tour_hanoi_recursivite';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Passer au contenu principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">NSI</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../content/activite_hanoi.html">Les tours de Hanoï</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../content/cours.html">Récursivité</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/tp/Hanoi/tour_hanoi_recursivite.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="clair/sombre" aria-label="clair/sombre" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Récursivité</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Les-tours-de-Hanoï">Les tours de Hanoï</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Commençons-par-le-cas-le-plus-simple-avec-n=2-disques-:">Commençons par le cas le plus simple avec <strong>n=2</strong> disques :</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Passons-maintenant-à-3-disques:">Passons maintenant à 3 disques:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#On-finit-avec-4-disques">On finit avec 4 disques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Résolution-récursive-du-casse-tête">Résolution récursive du casse-tête</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="Récursivité">
+<h1>Récursivité<a class="headerlink" href="#Récursivité" title="Lien permanent vers cette rubrique">#</a></h1>
+<section id="Les-tours-de-Hanoï">
+<h2>Les tours de Hanoï<a class="headerlink" href="#Les-tours-de-Hanoï" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>En étudiant la résolution du casse-tête des tours de Hanoï, on peut remarquer des similitudes dans les transferts.</p>
+<p>Pour expliquer et découvrir ces similitudes, on schématise les tours par des listes et les disques par des nombres entiers.</p>
+<section id="Commençons-par-le-cas-le-plus-simple-avec-n=2-disques-:">
+<h3>Commençons par le cas le plus simple avec <strong>n=2</strong> disques :<a class="headerlink" href="#Commençons-par-le-cas-le-plus-simple-avec-n=2-disques-:" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><img alt="Tour hanoi avec 2 disques" src="../../_images/thn2.png" /></p>
+</section>
+<section id="Passons-maintenant-à-3-disques:">
+<h3>Passons maintenant à 3 disques:<a class="headerlink" href="#Passons-maintenant-à-3-disques:" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>On va dans un premier temps déplacer les disques 1 et 2 de la tour A vers la tour C. On applique le même processus que pour <strong>n=2</strong> disques.</p>
+<p><img alt="image1" src="../../_images/tour1.png" /></p>
+<p>Les disques 1 et 2 déplacés sur la tour C, il devient possible de déplacer le disque 3 vers la tour B:</p>
+<p><img alt="image2" src="../../_images/tour2.png" /></p>
+<p>L’étape suivante consiste à libérer la tour C pour insérer le disque 3.</p>
+<p><img alt="image3" src="../../_images/tour3.png" /></p>
+<p>Pour replacer les deux disques de la tour C sur la tour A, c’est comme le transfert de la tour A vers la tour C mais en échangeant A par C et C par A.</p>
+<p><img alt="image4" src="../../_images/tour4.png" /></p>
+<p>La tour C libérée, on déplace le disque 3 de la tour B vers la tour C.</p>
+<p><img alt="image5" src="../../_images/tour5.png" /></p>
+<p>Dernière étape, replacer les disques 1 et 2 sur la tour C en reprenant le processus de déplacement des deux disques.</p>
+<p><img alt="image6" src="../../_images/tour6.png" /></p>
+</section>
+<section id="On-finit-avec-4-disques">
+<h3>On finit avec 4 disques<a class="headerlink" href="#On-finit-avec-4-disques" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Le déplacement de trois disques de la tour A vers la tour C constitue un processus à part entière. Avec 4 disques: - on cherchera d’abord à déplacer les trois disques supérieurs de la tour A sur la tour C; - on déplacera le disque 4 de la tour A vers la tour B; - on déplacera les trois disques 1,2 et de la tour C vers la tour A; - on déplacera le disque 4 de la tour B vers la tour C; - on déplacera les trois disques 1, 2 et 3 de la tour A vers la tour C.</p>
+<p><img alt="Résolution avec 4 disques" src="../../_images/tours4disques.png" /></p>
+<p>Cet algorithme vaut pour 4 disques et plus. Le principe repose sur le fait qu’on déporte la résolution vers un cas comportant un disque de moins et ainsi de suite jusqu’au cas de base avec <strong>n=2</strong> disques. Chaque disque supplémentaire est lié au cas qui comporte un disque de moins. En mathématiques, on appelle cela une relation de récurrence, en informatique, on dit que c’est un algorithme <strong>récursif</strong>.</p>
+<p>Supposons que la résolution du casse tête se réalise avec une fonction <strong>tour_hanoi</strong>. Elle prend en argument le nombre de disques et les piles A, B et C correspondant à l’état des tours.</p>
+<p>Elle se structurera ainsi:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="c1"># on résout le cas de base avec les transferts utiles pour 2 disques</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="o">...</span> <span class="c1"># premier appel récursif</span>
+        <span class="o">...</span> <span class="c1"># A --&gt; B (le plus grand disque passe en tour B)</span>
+        <span class="o">...</span> <span class="c1"># appel récursif en interchangeant A et C</span>
+        <span class="o">...</span> <span class="c1"># B --&gt; C (le plus grand disque passe en tour C)</span>
+        <span class="o">...</span> <span class="c1"># dernier appel récursif</span>
+</pre></div>
+</div>
+<p>L’appel de la fonction se fait avec <strong>n=4</strong> et les les 3 piles de disques A, B et C.</p>
+<p>Cette fonction va donc appeler la même fonction <strong>tour_hanoi</strong> avec cette fois-ci <strong>n=3</strong> disques et les piles A, B et C. Tant que la fonction appelée avec <strong>n=3</strong> n’a pas fini, la fonction appelante (n=4) se met en pause.</p>
+<p>Cette fonction va appeler la fonction <strong>tour_hanoi</strong> avec <strong>n=2</strong> disques et les 3 piles A, B et C.</p>
+<p>Pour <strong>n=2</strong>, on effectue les transfert de disques. La fonction ayant terminé, la fonction appelante (n=3) reprend son cours et poursuit la résoltion. Lorsqu’elle aura finit, c’est la fonction appelante avec <strong>n=4</strong> qui reprendra son cours normal.</p>
+</section>
+<section id="Résolution-récursive-du-casse-tête">
+<h3>Résolution récursive du casse-tête<a class="headerlink" href="#Résolution-récursive-du-casse-tête" title="Lien permanent vers cette rubrique">#</a></h3>
+<div class="line-block">
+<div class="line">Pour résoudre ce problème avec <strong>n</strong> disques (n&gt;2), on va appeler la résolution avec <strong>n-1</strong> disques qui va elle-même appeler la résolution pour <strong>n-2</strong> disques, jusqu’à avoir <strong>n=2</strong> disques et effectuer les transferts.</div>
+<div class="line">Une fois les 2 disques résolus, on remonte la pile d’appels pour poursuivre et terminer les instructions situés après l’appel.</div>
+</div>
+<p>Dans une fonction récursive, on retiendra: - que la fonction s’appelle elle-même pour résoudre un problème, une situation avec une valeur différente; - que la fonction contient un cas qui permet d’arrêter les appels : c’est le cas de base; - que la fonction reprend son cours, effectue les instructions situés après l’appel récursif; - enfin, la fonction peut contenir plusieurs appels récursifs.</p>
+<p>Les différents appels récursifs qui sont mis en pause, sont en fait contenus dans une pile.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dessus</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">L</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">transfert</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">):</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">dessus</span><span class="p">(</span><span class="n">L1</span><span class="p">)</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">dessus</span><span class="p">(</span><span class="n">L2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">d1</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="ow">or</span> <span class="n">d2</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">d1</span> <span class="o">&lt;</span> <span class="n">d2</span><span class="p">:</span>
+            <span class="n">L1</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">L2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">L2</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">L1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+
+<span class="n">n</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">pileA</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="n">pileB</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pileC</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pileA</span><span class="p">,</span><span class="n">pileB</span><span class="p">,</span><span class="n">pileC</span><span class="p">)</span>
+
+<span class="n">e</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">def</span> <span class="nf">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">e</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span>
+        <span class="c1">#print(pileA,pileB,pileC)</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span>
+        <span class="c1">#print(pileA,pileB,pileC)</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span>
+        <span class="c1">#print(pileA,pileB,pileC)</span>
+        <span class="n">e</span> <span class="o">+=</span> <span class="mi">3</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span>
+        <span class="n">e</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="c1">#print(pileA,pileB,pileC)</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">p3</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p1</span><span class="p">)</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span>
+        <span class="n">e</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="c1">#print(pileA,pileB,pileC)</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span>
+
+
+<span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">pileA</span><span class="p">,</span><span class="n">pileB</span><span class="p">,</span><span class="n">pileC</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pileA</span><span class="p">,</span><span class="n">pileB</span><span class="p">,</span><span class="n">pileC</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[4, 3, 2, 1] [] []
+[] [] [4, 3, 2, 1]
+35
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pile</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">dessus</span><span class="p">(</span><span class="n">pile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    cette fonction renvoie la valeur du disque du dessus de la pile si non vide</span>
+<span class="sd">    sinon renvoie une valeur plus grande que tous les disques</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pile</span><span class="o">.</span><span class="n">est_vide</span><span class="p">():</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">pile</span><span class="o">.</span><span class="n">depiler</span><span class="p">()</span>
+        <span class="n">pile</span><span class="o">.</span><span class="n">empiler</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">transfert</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    cette fonction passe un disque d&#39;une pile vers une autre pile</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">dessus</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">dessus</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">d1</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="ow">or</span> <span class="n">d2</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">d1</span> <span class="o">&lt;</span> <span class="n">d2</span><span class="p">:</span>
+            <span class="n">p1</span><span class="o">.</span><span class="n">depiler</span><span class="p">()</span>
+            <span class="n">p2</span><span class="o">.</span><span class="n">empiler</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">p2</span><span class="o">.</span><span class="n">depiler</span><span class="p">()</span>
+            <span class="n">p1</span><span class="o">.</span><span class="n">empiler</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">pileA</span> <span class="o">=</span> <span class="n">creer_pile</span><span class="p">()</span>
+<span class="n">pileB</span> <span class="o">=</span> <span class="n">creer_pile</span><span class="p">()</span>
+<span class="n">pileC</span> <span class="o">=</span> <span class="n">creer_pile</span><span class="p">()</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">pileA</span><span class="o">.</span><span class="n">empiler</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pile A:&quot;</span><span class="p">,</span><span class="n">pileA</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pile B:&quot;</span><span class="p">,</span><span class="n">pileB</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pile C:&quot;</span><span class="p">,</span><span class="n">pileC</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span> <span class="c1"># A --&gt; B</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span> <span class="c1"># A --&gt; C</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span> <span class="c1"># premier appel récursif</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span> <span class="c1"># A --&gt; B (le plus grand disque passe en tour B)</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">p3</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p1</span><span class="p">)</span> <span class="c1"># appel récursif en interchangeant A et C</span>
+        <span class="n">transfert</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span> <span class="c1"># B --&gt; C (le plus grand disque passe en tour C)</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">)</span> <span class="c1"># dernier appel récursif</span>
+
+<span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">pileA</span><span class="p">,</span><span class="n">pileB</span><span class="p">,</span><span class="n">pileC</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pileA</span><span class="p">,</span><span class="n">pileB</span><span class="p">,</span><span class="n">pileC</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+pile A: |4|3|2|1|
+pile B: |
+pile C: |
+
+Cas n=2
+A: |4|3|2| B: |1| C: |
+A: |4|3| B: |1| C: |2|
+A: |4|3| B: | C: |2|1|
+A --&gt; B
+Cas n=2
+A: |4| B: |3|1| C: |2|
+A: |4|2| B: |3|1| C: |
+A: |4|2|1| B: |3| C: |
+B --&gt; C
+Cas n=2
+A: |4|2| B: |1| C: |3|
+A: |4| B: |1| C: |3|2|
+A: |4| B: | C: |3|2|1|
+A --&gt; B
+Cas n=2
+A: | B: |4|1| C: |3|2|
+A: |2| B: |4|1| C: |3|
+A: |2|1| B: |4| C: |3|
+A --&gt; B
+Cas n=2
+A: |2| B: |4|3|1| C: |
+A: | B: |4|3|1| C: |2|
+A: | B: |4|3| C: |2|1|
+B --&gt; C
+Cas n=2
+A: |3| B: |4|1| C: |2|
+A: |3|2| B: |4|1| C: |
+A: |3|2|1| B: |4| C: |
+B --&gt; C
+Cas n=2
+A: |3|2| B: |1| C: |4|
+A: |3| B: |1| C: |4|2|
+A: |3| B: | C: |4|2|1|
+A --&gt; B
+Cas n=2
+A: | B: |3|1| C: |4|2|
+A: |2| B: |3|1| C: |4|
+A: |2|1| B: |3| C: |4|
+B --&gt; C
+Cas n=2
+A: |2| B: |1| C: |4|3|
+A: | B: |1| C: |4|3|2|
+A: | B: | C: |4|3|2|1|
+| | |4|3|2|1|
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Les-tours-de-Hanoï">Les tours de Hanoï</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Commençons-par-le-cas-le-plus-simple-avec-n=2-disques-:">Commençons par le cas le plus simple avec <strong>n=2</strong> disques :</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Passons-maintenant-à-3-disques:">Passons maintenant à 3 disques:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#On-finit-avec-4-disques">On finit avec 4 disques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Résolution-récursive-du-casse-tête">Résolution récursive du casse-tête</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Yannick Chistel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023,Yannick Chistel.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
