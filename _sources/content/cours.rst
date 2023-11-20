@@ -41,8 +41,8 @@ Bien évidemment, elle ne peut s'appeler elle-même indéfiniment ! Elle contien
 
    def tour_hanoi(n,D,I,A):
        if n > 0:
-           # on applelle la résolution pour n-1 disques
-           tour_hanoi(n-1,D,I,A)
+           # on appelle la résolution pour n-1 disques
+           tour_hanoi(n-1,D,A,I)
            # on déplace le disque libéré de D vers A
            deplacer(D,A)
            # on appelle la résolution des n-1 disques en I vers A
@@ -57,7 +57,7 @@ Le code Python précédent peut être écrit autrement, avec une condition d'arr
            # on déplace le disque de D vers A
            deplacer(D,A)
        else:
-           # on applelle la résolution pour n-1 disques
+           # on appelle la résolution pour n-1 disques
            tour_hanoi(n-1,D,A,I)
            # on déplace le disque libéré de D vers A
            deplacer(D,A)

@@ -328,8 +328,8 @@ Bien évidemment, elle ne peut s’appeler elle-même indéfiniment ! Elle conti
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="c1"># on applelle la résolution pour n-1 disques</span>
-        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="c1"># on appelle la résolution pour n-1 disques</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
         <span class="c1"># on déplace le disque libéré de D vers A</span>
         <span class="n">deplacer</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
         <span class="c1"># on appelle la résolution des n-1 disques en I vers A</span>
@@ -342,7 +342,7 @@ Bien évidemment, elle ne peut s’appeler elle-même indéfiniment ! Elle conti
         <span class="c1"># on déplace le disque de D vers A</span>
         <span class="n">deplacer</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># on applelle la résolution pour n-1 disques</span>
+        <span class="c1"># on appelle la résolution pour n-1 disques</span>
         <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
         <span class="c1"># on déplace le disque libéré de D vers A</span>
         <span class="n">deplacer</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
