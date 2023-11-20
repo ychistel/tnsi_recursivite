@@ -2,6 +2,13 @@
     --color-blue:#2b5b84;
     --color-blue-light:#adc5d9;
 }
+.width-25{width:24.66%}
+.width-33{width:33%}
+.width-66{width:66%}
+.width-75{width:74.66%}
+.width-50{width:49.66%}
+.width-40{width:39.66%}
+.width-60{width:59.66%}
 
 .margin-none{margin:none}
 .margin-0{margin:0px}.margin-2{margin:2px}.margin-4{margin:4px}.margin-8{margin:8px}.margin-16{margin:16px}.margin-32{margin:32px}

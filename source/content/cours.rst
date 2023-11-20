@@ -2,24 +2,6 @@
 
 Récursivité
 ===========
-
-Programmation itérative
------------------------
-
-En informatique, le paradigme impératif avec les **boucles**, permet de répéter autant de fois que nécessaire une même
-instruction ou un même bloc d'instructions.
-
-Le calcul d'une somme de nombre entiers consécutifs se réalise facilement avec un code itératif.
-
-.. rubric:: avec une boucle bornée for.
-
-.. literalinclude:: ../python/activite.py
-   :lines: 1,12-15
-
-.. rubric:: avec une boucle conditionnelle while.
-
-.. literalinclude:: ../python/activite.py
-   :lines: 17,29-34
    
 Fonction récursive
 ------------------
@@ -37,94 +19,55 @@ Bien évidemment, elle ne peut s'appeler elle-même indéfiniment ! Elle contien
 
 .. rubric:: Remarques
 
-- Une fonction récursive est appelée une première fois avec ses arguments. Cette fonction, en s'exécutant, va donc
-  s'appeler elle-même avec d'autres arguments, qui va donc s'appeler elle-même encore une troisième fois avec d'autres arguments, et ainsi de suite ...
-- Une condition d'arrêt sur la valeur des arguments est vérifiée à chaque appel. Lorsque la condition est vraie, les appels
-  s'arrêtent. Une pile d'appels s'est consituée mettant en attente toutes les fonctions appelantes.
+- Une fonction récursive est appelée une première fois avec ses arguments. Cette fonction, en s'exécutant, va donc s'appeler elle-même avec d'autres arguments, qui va donc s'appeler elle-même encore une troisième fois avec d'autres arguments, et ainsi de suite ...
+- Une condition d'arrêt sur la valeur des arguments est vérifiée à chaque appel. Lorsque la condition est vraie, les appels s'arrêtent. Une pile d'appels s'est consituée mettant en attente toutes les fonctions appelantes.
 - La pile des fonctions en attente reprend son éxécution jusqu'à l'appel initial qui renvoie le résultat attendu.
 
 .. admonition:: Exemple
 
-   La fonction ``somme(n)`` calcule la somme des :math:`n` premiers entiers.
+   Le jeu des tours de Hanoï a une solution récursive. Pour 4 disques:
+   
+   -  on résout le problème avec 3 disques en les déplaçant du poteau de départ ``D`` au poteau intermédiaire ``I``;
+   -  le plus grand disque est libre; on le déplace sur le poteau d'arrivée ``A``;
+   -  on résout le problème avec 3 disques en les déplaçant du poteau intermédiaire ``I`` au poteau d'arrivée ``A``.
 
-   Pour calculer :math:`S=1+2+3+4`, on appelle la fonction ``somme(4)``.
+   .. figure:: ../img/tour_hanoi_4_solution.svg
+      :align: center
+      :width: 480
 
-   - Calculer la somme des 4 premiers entiers revient à ajouter au nombre 4 la somme des 3 premiers entiers: :code:`4+somme(3)`
-   - Calculer la somme des 3 premiers entiers revient à ajouter au nombre 3 la somme des 2 premiers entiers: :code:`3+somme(2)`
-   - Calculer la somme des 2 premiers entiers revient à ajouter au nombre 2 la somme du premier entier: :code:`2+somme(1)`
-   - Calculer la somme du premier entier revient à renvoyer sa valeur c'est à dire :code:`somme(1)=1`.
+   La résolution à 3 disques fait appel à la solution à 2 disques qui elle-même fait appel à la solution à 1 disque qui consiste à déplacer ce plus petit disque. Ce dernier appel constitue le cas de base. 
+   
+.. code-block:: python
 
-   Donc nous avons les appels successifs:
+   def tour_hanoi(n,D,I,A):
+       if n > 0:
+           # on applelle la résolution pour n-1 disques
+           tour_hanoi(n-1,D,I,A)
+           # on déplace le disque libéré de D vers A
+           deplacer(D,A)
+           # on appelle la résolution des n-1 disques en I vers A
+           tour_hanoi(n-1,I,D,A)
 
-   - :code:`somme(4) = 4 + somme(3)` se met en attente du résultat de l'appel de somme(3)
-   - :code:`somme(3) = 3 + somme(2)` se met en attente du résultat de l'appel de somme(2)
-   - :code:`somme(2) = 2 + somme(1)` se met en attente du résultat de l'appel de somme(1)
-   - :code:`somme(1) = 1`
-   - :code:`somme(2) = 2 + 1 = 3` reprise de l'appel de la fonction avec la valeur renvoyée 1
-   - :code:`somme(3) = 3 + 3 = 6` reprise de l'appel de la fonction avec la valeur renvoyée 3
-   - :code:`somme(4) = 4 + 6 = 10` reprise de l'appel de la fonction avec la valeur renvoyée 6
-
-Le code de la fonction récursive ``somme`` est donc:
+Le code Python précédent peut être écrit autrement, avec une condition d'arrêt pour ``n=1`` disque:
 
 .. code-block:: python
 
-   def somme(n):
+   def tour_hanoi(n,D,I,A):
        if n == 1:
-           return 1
+           # on déplace le disque de D vers A
+           deplacer(D,A)
        else:
-           return n + somme(n-1)
+           # on applelle la résolution pour n-1 disques
+           tour_hanoi(n-1,D,I,A)
+           # on déplace le disque libéré de D vers A
+           deplacer(D,A)
+           # on appelle la résolution des n-1 disques en I vers A
+           tour_hanoi(n-1,I,D,A)
 
-Visualiser la récursivité
--------------------------
+Pile d'appels de la récursivité
+-------------------------------
 
-Il est difficile d'imaginer la pile des appels et la remontée de cette pile avec les valeurs renvoyées.
+Une fonction récursive crée une pile d'appels et interrompt l'exécution du code à chaque appel. Lorsque le dernier appel renvoie une réponse, la pile d'appels se vide et le code reprend là où il s'est interrompu.
 
 On peut visualiser ces appels récursifs en utilisant 2 modules : **Python tutor** et **rcviz**.
 
-.. rubric:: Avec python tutor
-
-.. code-block:: python
-
-   from tutor import tutor
-
-   def somme(n):
-       if n == 1:
-           return 1
-       else:
-           return n + somme(n-1)
-       
-   somme(4)
-   tutor()
-
-.. figure:: ../img/tutor_somme_0.png
-   :align: center
-
-   Initialisation de Python tutor
-
-
-.. figure:: ../img/tutor_somme_1.png
-   :align: center
-
-   Exécution jusqu'au cas de base
-
-.. rubric:: Avec rcviz
-
-.. code-block:: python
-
-   from rcviz import viz
-
-   @viz # décorateur python 
-   def somme(n):
-       if n == 1:
-           return 1
-       else:
-           return n + somme(n-1)
- 
-   somme(4) # exécution de la fonction
-   somme.callgraph() # affichage des appels récursifs pour la fonction exécutée
-
-.. figure:: ../img/rcviz_somme.png
-   :align: center
-   :width: 100
-   
-   La pile des appels récursifs

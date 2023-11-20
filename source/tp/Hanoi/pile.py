@@ -39,6 +39,7 @@ class Pile:
 def creer_pile():
     return Pile()
 
+
 if __name__=='__main__':
     P=creer_pile()
     print(P.est_vide())
