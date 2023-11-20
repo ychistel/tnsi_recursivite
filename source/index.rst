@@ -19,5 +19,6 @@ chaque poupée gigogne qui en contient une plus petite jusqu'à la plus dernièr
    content/activite_hanoi.rst
    content/cours.rst
    content/exercice.rst
-   
+   content/tp_fractale.rst
+   content/tp_sierpinsky.rst
 
