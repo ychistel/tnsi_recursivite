@@ -1,0 +1,546 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="fr" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Exercices &#8212; NSI</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/exercice';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="prev" title="Récursivité" href="cours.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Passer au contenu principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">NSI</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="activite_hanoi.html">Les tours de Hanoï</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours.html">Récursivité</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Exercices</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/exercice.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="clair/sombre" aria-label="clair/sombre" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exercices</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-1">Exercice 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-2">Exercice 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-3">Exercice 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-4">Exercice 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-5">Exercice 5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-6">Exercice 6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-8">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-9">Exercice</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="exercices">
+<h1>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers cette rubrique">#</a></h1>
+<section id="exercice-1">
+<h2>Exercice 1<a class="headerlink" href="#exercice-1" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>On donne la fonction suivante:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/ordre.png"><img alt="image" src="../_images/ordre.png" style="width: 420px;" /></a>
+</figure>
+<ol class="arabic simple">
+<li><p>Expliquer pourquoi la fonction <code class="docutils literal notranslate"><span class="pre">ordre(n)</span></code> est récursive.</p></li>
+<li><p>Que renvoie l’appel <code class="docutils literal notranslate"><span class="pre">ordre(4)</span></code> ?</p></li>
+<li><p>Que se passe-t-il si on change la dernière instruction par <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">str(n)+ordre(n-1)</span></code> ?</p></li>
+</ol>
+</section>
+<section id="exercice-2">
+<span id="id1"></span><h2>Exercice 2<a class="headerlink" href="#exercice-2" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>On donne la fonction suivante:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/compte.png"><img alt="image" src="../_images/compte.png" style="width: 420px;" /></a>
+</figure>
+<ol class="arabic simple">
+<li><p>Expliquer pourquoi la fonction <code class="docutils literal notranslate"><span class="pre">compte(n)</span></code> est récursive.</p></li>
+<li><p>Que renvoie l’appel <code class="docutils literal notranslate"><span class="pre">compte(5)</span></code> ?</p></li>
+<li><p>Que se passe-t-il si on change la dernière instruction par <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">1+compte(n-2)</span></code> ?</p></li>
+</ol>
+</section>
+<section id="exercice-3">
+<span id="id2"></span><h2>Exercice 3<a class="headerlink" href="#exercice-3" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>On donne le script suivant et la table de caractères ASCII:</p>
+<p><img alt="image" class="width-40" src="../_images/alphabet.png" /> <img alt="image1" class="width-60" src="../_images/tableASCII.png" /></p>
+<p>On rappelle que la fonction Python <code class="docutils literal notranslate"><span class="pre">chr(n)</span></code> prend en argument un nombre entier <code class="docutils literal notranslate"><span class="pre">n</span></code> en écriture décimale et renvoie le caractère ASCII associé.</p>
+<ol class="arabic simple">
+<li><p>Quelle est la valeur renvoyée par la commande <code class="docutils literal notranslate"><span class="pre">chr(65)</span></code> ?</p></li>
+<li><p>Quel est l’affichage à l’issu du script ?</p></li>
+<li><p>Écrire la fonction récursive <code class="docutils literal notranslate"><span class="pre">affiche_recursif</span></code> renvoyant le même résultat que le script ci-dessus.</p></li>
+</ol>
+</section>
+<section id="exercice-4">
+<span id="id3"></span><h2>Exercice 4<a class="headerlink" href="#exercice-4" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>Lorsqu’on effectue une remise de 10% sur un prix, cela revient à multiplier ce prix par la valeur <span class="math notranslate nohighlight">\(1-10/100\)</span>.</p>
+<p>On veut calculer des baisses successives de 10% sur une valeur, le nombre de remises étant défini à l’avance.</p>
+<ol class="arabic simple">
+<li><p>Calculer trois remises successives de 10% sur un prix de 100 €.</p></li>
+<li><p>Montrer en détaillant le calcul qu’un algorithme récursif peut s’appliquer.</p></li>
+<li><p>Écrire un script itératif qui calcule <span class="math notranslate nohighlight">\(n\)</span> remises successives de 10% sur un prix. On utilisera les variables <code class="docutils literal notranslate"><span class="pre">prix</span></code> et <code class="docutils literal notranslate"><span class="pre">n</span></code>. La variable <code class="docutils literal notranslate"><span class="pre">prix</span></code> contiendra la valeur finale.</p></li>
+<li><p>Vérifier votre script avec un prix de 100 pour <span class="math notranslate nohighlight">\(n=3\)</span> remises.</p></li>
+<li><p>Écrire la fonction récursive <code class="docutils literal notranslate"><span class="pre">remise_successive</span></code> qui calcule <span class="math notranslate nohighlight">\(n\)</span> remise de 10% sur un prix défini à l’avance.</p></li>
+</ol>
+</section>
+<section id="exercice-5">
+<span id="id4"></span><h2>Exercice 5<a class="headerlink" href="#exercice-5" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>En mathématiques, pour trouver le plus grand commun diviseur de 2 nombres entiers, on applique l’algorithme d’Euclide, donné ci-dessous en python:</p>
+<a class="reference internal image-reference" href="../_images/ex-pgcd.png"><img alt="image" class="align-center" src="../_images/ex-pgcd.png" style="width: 420px;" /></a>
+<ol class="arabic simple">
+<li><p>S’agit-il d’une fonction récursive ? Pourquoi ?</p></li>
+<li><ol class="loweralpha simple">
+<li><p>Que calcule l’opération <span class="math notranslate nohighlight">\(a\%b\)</span> dans la dernière ligne de la fonction ?</p></li>
+<li><p>Quelle est la valeur de <span class="math notranslate nohighlight">\(12\%7\)</span> ?</p></li>
+<li><p>Que se passe-t-il si <span class="math notranslate nohighlight">\(a\)</span> est strictement inférieur à <span class="math notranslate nohighlight">\(b\)</span> ?</p></li>
+</ol>
+</li>
+<li><p>Quelle est la signification des instructions aux lignes 2 et 3 de la fonction ?</p></li>
+<li><p>Donner les différentes phases d’exécution de l’appel <code class="docutils literal notranslate"><span class="pre">pgcd(28,42)</span></code>.</p></li>
+</ol>
+</section>
+<section id="exercice-6">
+<span id="id5"></span><h2>Exercice 6<a class="headerlink" href="#exercice-6" title="Lien permanent vers cette rubrique">#</a></h2>
+<ol class="arabic simple">
+<li><p>Calculer :</p>
+<ol class="loweralpha simple">
+<li><p><span class="math notranslate nohighlight">\(1 \times 2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(1 \times 2 \times 3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(1 \times 2 \times 3 \times 4\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(1 \times 2 \times 3 \times 4 \times 5\)</span></p></li>
+</ol>
+</li>
+<li><p>Les produits précédents sont des <strong>factorielles</strong> que l’on va noter <code class="docutils literal notranslate"><span class="pre">factorielle(n)</span></code> où <code class="docutils literal notranslate"><span class="pre">n</span></code> est un nombre entier.</p>
+<ol class="loweralpha simple">
+<li><p>Quelle relation peut-on écrire entre <code class="docutils literal notranslate"><span class="pre">factorielle(3)</span></code> et <code class="docutils literal notranslate"><span class="pre">factorielle(2)</span></code> ?</p></li>
+<li><p>Quelle relation peut-on écrire entre <code class="docutils literal notranslate"><span class="pre">factorielle(4)</span></code> et <code class="docutils literal notranslate"><span class="pre">factorielle(3)</span></code> ?</p></li>
+<li><p>Pour tout nombre entier <span class="math notranslate nohighlight">\(n\)</span>, écrire une relation entre <code class="docutils literal notranslate"><span class="pre">factorielle(n)</span></code> et <code class="docutils literal notranslate"><span class="pre">factorielle(n-1)</span></code>.</p></li>
+</ol>
+</li>
+<li><p>Écrire la fonction récursive <code class="docutils literal notranslate"><span class="pre">factorielle(n)</span></code> qui prend en paramètre un nombre entier <span class="math notranslate nohighlight">\(n\)</span> et renvoie la valeur de sa factorielle. On admet que <code class="docutils literal notranslate"><span class="pre">factorielle(1)</span></code> renvoie la valeur 1.</p></li>
+</ol>
+</section>
+<section id="exercice">
+<span id="id6"></span><h2>Exercice<a class="headerlink" href="#exercice" title="Lien permanent vers cette rubrique">#</a></h2>
+<ol class="arabic">
+<li><p>Expliquer quel est le résultat renvoyé par le code suivant:</p>
+<figure class="align-center">
+<img alt="image" src="../_images/ex-mystere.jpg" />
+</figure>
+</li>
+<li><dl class="simple">
+<dt>Écrire une fonction binaire qui prend en paramètres un entier relatif <span class="math notranslate nohighlight">\(r\)</span> et un entier naturel <span class="math notranslate nohighlight">\(n\)</span> strictement positif, et qui renvoie la représentation en machine de <span class="math notranslate nohighlight">\(r\)</span> sur <span class="math notranslate nohighlight">\(n\)</span> bits.</dt><dd><p>La méthode utilisée est celle du complément à <span class="math notranslate nohighlight">\(2\)</span>.</p>
+</dd>
+</dl>
+<p>Déterminer l’écriture binaire sur <span class="math notranslate nohighlight">\(n\)</span> bits d’un nombre négatif
+<span class="math notranslate nohighlight">\(r\)</span> revient à déterminer l’écriture binaire du nombre positif
+<span class="math notranslate nohighlight">\(r+2^{n}\)</span>.</p>
+<p>Exemple de l’écriture binaire du nombre <span class="math notranslate nohighlight">\(-35\)</span> sur 7 bits :
+<span class="math notranslate nohighlight">\(-35+2^{7}=93=1011101_{2}\)</span>.</p>
+</li>
+</ol>
+</section>
+<section id="exercice-8">
+<span id="id7"></span><h2>Exercice<a class="headerlink" href="#exercice-8" title="Lien permanent vers cette rubrique">#</a></h2>
+<ol class="arabic">
+<li><p>Dans un idle (pyzo, thonny, python) saisir le programme ci-dessous et
+le tester:</p>
+<div class="center docutils container">
+<img alt="image" src="../_images/pgm-dessin-spirale.jpg" />
+</div>
+</li>
+<li><p>En donner une version récursive.</p></li>
+</ol>
+</section>
+<section id="exercice-9">
+<span id="id8"></span><h2>Exercice<a class="headerlink" href="#exercice-9" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>La fonction <strong>fibonacci(n)</strong>, qui doit son nom au mathématicien Leonardo
+Fibonacci, est définie récursivement, pout tout entier <span class="math notranslate nohighlight">\(n\)</span>, de la
+manière suivante:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\text{fibonnacci}(n)=\left\lbrace \begin{array}{ll}
+0 &amp; \text{si~} n=0,\\
+1 &amp; \text{si~} n=1,\\
+\text{fibonnacci}(n-2) + \text{fibonnacci}(n-1) &amp; \text{si~} n&gt;1.\\
+\end{array}
+\right.
+\end{aligned}\end{split}\]</div>
+<ol class="arabic simple">
+<li><p>Calculer fibonacci(5).</p></li>
+<li><p>Écrire en python cette fonction fibonacci.</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cours.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Récursivité</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-1">Exercice 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-2">Exercice 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-3">Exercice 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-4">Exercice 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-5">Exercice 5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-6">Exercice 6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-8">Exercice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-9">Exercice</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Yannick Chistel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023,Yannick Chistel.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

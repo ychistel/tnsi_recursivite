@@ -17,6 +17,7 @@ chaque poupée gigogne qui en contient une plus petite jusqu'à la plus dernièr
    :maxdepth: 1
 
    content/activite_hanoi.rst
-   content/cours.rst   
+   content/cours.rst
+   content/exercice.rst
    
 

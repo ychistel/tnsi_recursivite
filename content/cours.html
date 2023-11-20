@@ -45,11 +45,10 @@
     <script src="../_static/custom.js"></script>
     <script src="../_static/translations.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/cours';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Exercices" href="exercice.html" />
     <link rel="prev" title="Les tours de Hanoï" href="activite_hanoi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="fr"/>
@@ -140,6 +139,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="activite_hanoi.html">Les tours de Hanoï</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Récursivité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercice.html">Exercices</a></li>
 </ul>
 
     </div>
@@ -286,9 +286,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-iterative">Programmation itérative</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonction-recursive">Fonction récursive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualiser-la-recursivite">Visualiser la récursivité</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pile-d-appels-de-la-recursivite">Pile d’appels de la récursivité</a></li>
 </ul>
             </nav>
         </div>
@@ -302,30 +301,6 @@ document.write(`
                   
   <section id="recursivite">
 <h1>Récursivité<a class="headerlink" href="#recursivite" title="Lien permanent vers cette rubrique">#</a></h1>
-<section id="programmation-iterative">
-<h2>Programmation itérative<a class="headerlink" href="#programmation-iterative" title="Lien permanent vers cette rubrique">#</a></h2>
-<p>En informatique, le paradigme impératif avec les <strong>boucles</strong>, permet de répéter autant de fois que nécessaire une même
-instruction ou un même bloc d’instructions.</p>
-<p>Le calcul d’une somme de nombre entiers consécutifs se réalise facilement avec un code itératif.</p>
-<p class="rubric">avec une boucle bornée for.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somme_f</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="n">i</span>
-    <span class="k">return</span> <span class="n">s</span>
-</pre></div>
-</div>
-<p class="rubric">avec une boucle conditionnelle while.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somme_w</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="n">i</span>
-        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">s</span>
-</pre></div>
-</div>
-</section>
 <section id="fonction-recursive">
 <h2>Fonction récursive<a class="headerlink" href="#fonction-recursive" title="Lien permanent vers cette rubrique">#</a></h2>
 <p>La récursivité est un phénomène qui se répète, qui s’applique à lui-même.</p>
@@ -334,91 +309,52 @@ instruction ou un même bloc d’instructions.</p>
 Bien évidemment, elle ne peut s’appeler elle-même indéfiniment ! Elle contient donc une <strong>condition d’arrêt</strong>.</p>
 <p class="rubric">Remarques</p>
 <ul class="simple">
-<li><p>Une fonction récursive est appelée une première fois avec ses arguments. Cette fonction, en s’exécutant, va donc
-s’appeler elle-même avec d’autres arguments, qui va donc s’appeler elle-même encore une troisième fois avec d’autres arguments, et ainsi de suite …</p></li>
-<li><p>Une condition d’arrêt sur la valeur des arguments est vérifiée à chaque appel. Lorsque la condition est vraie, les appels
-s’arrêtent. Une pile d’appels s’est consituée mettant en attente toutes les fonctions appelantes.</p></li>
+<li><p>Une fonction récursive est appelée une première fois avec ses arguments. Cette fonction, en s’exécutant, va donc s’appeler elle-même avec d’autres arguments, qui va donc s’appeler elle-même encore une troisième fois avec d’autres arguments, et ainsi de suite …</p></li>
+<li><p>Une condition d’arrêt sur la valeur des arguments est vérifiée à chaque appel. Lorsque la condition est vraie, les appels s’arrêtent. Une pile d’appels s’est consituée mettant en attente toutes les fonctions appelantes.</p></li>
 <li><p>La pile des fonctions en attente reprend son éxécution jusqu’à l’appel initial qui renvoie le résultat attendu.</p></li>
 </ul>
 <div class="admonition-exemple admonition">
 <p class="admonition-title">Exemple</p>
-<p>La fonction <code class="docutils literal notranslate"><span class="pre">somme(n)</span></code> calcule la somme des <span class="math notranslate nohighlight">\(n\)</span> premiers entiers.</p>
-<p>Pour calculer <span class="math notranslate nohighlight">\(S=1+2+3+4\)</span>, on appelle la fonction <code class="docutils literal notranslate"><span class="pre">somme(4)</span></code>.</p>
+<p>Le jeu des tours de Hanoï a une solution récursive. Pour 4 disques:</p>
 <ul class="simple">
-<li><p>Calculer la somme des 4 premiers entiers revient à ajouter au nombre 4 la somme des 3 premiers entiers: <code class="code docutils literal notranslate"><span class="pre">4+somme(3)</span></code></p></li>
-<li><p>Calculer la somme des 3 premiers entiers revient à ajouter au nombre 3 la somme des 2 premiers entiers: <code class="code docutils literal notranslate"><span class="pre">3+somme(2)</span></code></p></li>
-<li><p>Calculer la somme des 2 premiers entiers revient à ajouter au nombre 2 la somme du premier entier: <code class="code docutils literal notranslate"><span class="pre">2+somme(1)</span></code></p></li>
-<li><p>Calculer la somme du premier entier revient à renvoyer sa valeur c’est à dire <code class="code docutils literal notranslate"><span class="pre">somme(1)=1</span></code>.</p></li>
+<li><p>on résout le problème avec 3 disques en les déplaçant du poteau de départ <code class="docutils literal notranslate"><span class="pre">D</span></code> au poteau intermédiaire <code class="docutils literal notranslate"><span class="pre">I</span></code>;</p></li>
+<li><p>le plus grand disque est libre; on le déplace sur le poteau d’arrivée <code class="docutils literal notranslate"><span class="pre">A</span></code>;</p></li>
+<li><p>on résout le problème avec 3 disques en les déplaçant du poteau intermédiaire <code class="docutils literal notranslate"><span class="pre">I</span></code> au poteau d’arrivée <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p></li>
 </ul>
-<p>Donc nous avons les appels successifs:</p>
-<ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">somme(4)</span> <span class="pre">=</span> <span class="pre">4</span> <span class="pre">+</span> <span class="pre">somme(3)</span></code> se met en attente du résultat de l’appel de somme(3)</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">somme(3)</span> <span class="pre">=</span> <span class="pre">3</span> <span class="pre">+</span> <span class="pre">somme(2)</span></code> se met en attente du résultat de l’appel de somme(2)</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">somme(2)</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">somme(1)</span></code> se met en attente du résultat de l’appel de somme(1)</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">somme(1)</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">somme(2)</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">3</span></code> reprise de l’appel de la fonction avec la valeur renvoyée 1</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">somme(3)</span> <span class="pre">=</span> <span class="pre">3</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">=</span> <span class="pre">6</span></code> reprise de l’appel de la fonction avec la valeur renvoyée 3</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">somme(4)</span> <span class="pre">=</span> <span class="pre">4</span> <span class="pre">+</span> <span class="pre">6</span> <span class="pre">=</span> <span class="pre">10</span></code> reprise de l’appel de la fonction avec la valeur renvoyée 6</p></li>
-</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/tour_hanoi_4_solution.svg"><img alt="../_images/tour_hanoi_4_solution.svg" src="../_images/tour_hanoi_4_solution.svg" width="480" /></a>
+</figure>
+<p>La résolution à 3 disques fait appel à la solution à 2 disques qui elle-même fait appel à la solution à 1 disque qui consiste à déplacer ce plus petit disque. Ce dernier appel constitue le cas de base.</p>
 </div>
-<p>Le code de la fonction récursive <code class="docutils literal notranslate"><span class="pre">somme</span></code> est donc:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somme</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># on applelle la résolution pour n-1 disques</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="c1"># on déplace le disque libéré de D vers A</span>
+        <span class="n">deplacer</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="c1"># on appelle la résolution des n-1 disques en I vers A</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Le code Python précédent peut être écrit autrement, avec une condition d’arrêt pour <code class="docutils literal notranslate"><span class="pre">n=1</span></code> disque:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
+        <span class="c1"># on déplace le disque de D vers A</span>
+        <span class="n">deplacer</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">somme</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># on applelle la résolution pour n-1 disques</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="c1"># on déplace le disque libéré de D vers A</span>
+        <span class="n">deplacer</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="c1"># on appelle la résolution des n-1 disques en I vers A</span>
+        <span class="n">tour_hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="visualiser-la-recursivite">
-<h2>Visualiser la récursivité<a class="headerlink" href="#visualiser-la-recursivite" title="Lien permanent vers cette rubrique">#</a></h2>
-<p>Il est difficile d’imaginer la pile des appels et la remontée de cette pile avec les valeurs renvoyées.</p>
+<section id="pile-d-appels-de-la-recursivite">
+<h2>Pile d’appels de la récursivité<a class="headerlink" href="#pile-d-appels-de-la-recursivite" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>Une fonction récursive crée une pile d’appels et interrompt l’exécution du code à chaque appel. Lorsque le dernier appel renvoie une réponse, la pile d’appels se vide et le code reprend là où il s’est interrompu.</p>
 <p>On peut visualiser ces appels récursifs en utilisant 2 modules : <strong>Python tutor</strong> et <strong>rcviz</strong>.</p>
-<p class="rubric">Avec python tutor</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tutor</span> <span class="kn">import</span> <span class="n">tutor</span>
-
-<span class="k">def</span> <span class="nf">somme</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">somme</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">somme</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">tutor</span><span class="p">()</span>
-</pre></div>
-</div>
-<figure class="align-center" id="id1">
-<img alt="../_images/tutor_somme_0.png" src="../_images/tutor_somme_0.png" />
-<figcaption>
-<p><span class="caption-text">Initialisation de Python tutor</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="id2">
-<img alt="../_images/tutor_somme_1.png" src="../_images/tutor_somme_1.png" />
-<figcaption>
-<p><span class="caption-text">Exécution jusqu’au cas de base</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">#</a></p>
-</figcaption>
-</figure>
-<p class="rubric">Avec rcviz</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rcviz</span> <span class="kn">import</span> <span class="n">viz</span>
-
-<span class="nd">@viz</span> <span class="c1"># décorateur python</span>
-<span class="k">def</span> <span class="nf">somme</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">somme</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">somme</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># exécution de la fonction</span>
-<span class="n">somme</span><span class="o">.</span><span class="n">callgraph</span><span class="p">()</span> <span class="c1"># affichage des appels récursifs pour la fonction exécutée</span>
-</pre></div>
-</div>
-<figure class="align-center" id="id3">
-<a class="reference internal image-reference" href="../_images/rcviz_somme.png"><img alt="../_images/rcviz_somme.png" src="../_images/rcviz_somme.png" style="width: 100px;" /></a>
-<figcaption>
-<p><span class="caption-text">La pile des appels récursifs</span><a class="headerlink" href="#id3" title="Lien permanent vers cette image">#</a></p>
-</figcaption>
-</figure>
 </section>
 </section>
 
@@ -442,6 +378,15 @@ s’arrêtent. Une pile d’appels s’est consituée mettant en attente toutes 
         <p class="prev-next-title">Les tours de Hanoï</p>
       </div>
     </a>
+    <a class="right-next"
+       href="exercice.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Exercices</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -457,9 +402,8 @@ s’arrêtent. Une pile d’appels s’est consituée mettant en attente toutes 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-iterative">Programmation itérative</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonction-recursive">Fonction récursive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualiser-la-recursivite">Visualiser la récursivité</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pile-d-appels-de-la-recursivite">Pile d’appels de la récursivité</a></li>
 </ul>
   </nav></div>
 

@@ -59,8 +59,7 @@ Au début de la partie, la pile A contient tous les disques, c'est à dire les n
 
 Le programme à compléter contient des fonctions:
 
--  la fonction ``dessus(p)`` qui renvoie la valeur du disque au sommet de la pile ``p`` sans le supprimer.
--  la fonction ``transfert(p1,p2)`` qui déplace un disque d'une pile ``p1`` à une autre pile ``p2``.
+-  la fonction ``deplacer(p1,p2)`` qui déplace un disque d'une pile ``p1`` à une autre pile ``p2``.
 -  l'import des fonctions pour créer et manipuler des piles.
 
 Ouvrir le notebook de code ``fc4e-2297352`` qui contient le programme puis compléter la fonction ``tout_hanoi`` pour résoudre le jeu.
