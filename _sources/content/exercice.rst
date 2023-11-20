@@ -38,7 +38,6 @@ Exercice 3
 
 On donne le script suivant et la table de caractères ASCII:
 
-
 .. |image| image:: ../img/alphabet.png
            :class: width-40
 .. |image1| image:: ../img/tableASCII.png
@@ -118,39 +117,34 @@ Exercice
       :alt: image
       :align: center
 
-#. Écrire une fonction binaire qui prend en paramètres un entier relatif :math:`r` et un entier naturel :math:`n` strictement positif, et qui renvoie la représentation en machine de :math:`r` sur :math:`n` bits.
-    La méthode utilisée est celle du complément à :math:`2`.
+#. Écrire une fonction binaire qui prend en paramètres un entier relatif :math:`r` et un entier naturel :math:`n` strictement positif, et qui renvoie la représentation en machine de :math:`r` sur :math:`n` bits. La méthode utilisée est celle du complément à :math:`2`.
 
-   Déterminer l’écriture binaire sur :math:`n` bits d’un nombre négatif
-   :math:`r` revient à déterminer l’écriture binaire du nombre positif
-   :math:`r+2^{n}`.
+   .. note:: 
+      
+      Déterminer l’écriture binaire sur :math:`n` bits d’un nombre négatif :math:`r` revient à déterminer l’écriture binaire du nombre positif :math:`r+2^{n}` (méthode du complément à 2)
 
-   Exemple de l’écriture binaire du nombre :math:`-35` sur 7 bits :
-   :math:`-35+2^{7}=93=1011101_{2}`.
+      Exemple de l’écriture binaire du nombre :math:`-35` sur 7 bits est :math:`-35+2^{7}=93=1011101_{2}`.
 
 .. _exercice-8:
 
 Exercice 
 ---------
 
-#. Dans un idle (pyzo, thonny, python) saisir le programme ci-dessous et
-   le tester:
+#. Saisir le programme ci-dessous et le tester:
 
-   .. container:: center
+   .. figure:: ../img/pgm-dessin-spirale.jpg
+      :alt: image
+      :align: center
+      :width: 420
 
-      .. image:: ../img/pgm-dessin-spirale.jpg
-         :alt: image
-
-#. En donner une version récursive.
+#. Donner une version récursive de ce code et vérifier qu'il donne bien le même résultat.
 
 .. _exercice-9:
 
 Exercice 
 ---------
 
-La fonction **fibonacci(n)**, qui doit son nom au mathématicien Leonardo
-Fibonacci, est définie récursivement, pout tout entier :math:`n`, de la
-manière suivante:
+La fonction ``fibonacci(n)``, qui doit son nom au mathématicien Leonardo Fibonacci, est définie récursivement, pout tout entier :math:`n`, de la manière suivante:
 
 .. math::
 
@@ -164,6 +158,5 @@ manière suivante:
    \end{aligned}
 
 #. Calculer fibonacci(5).
-
-#. Écrire en python cette fonction fibonacci.
+#. Écrire en python cette fonction ``fibonacci``.
 

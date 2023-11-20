@@ -50,6 +50,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/exercice';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="TP : Les fractales" href="tp_fractale.html" />
     <link rel="prev" title="Récursivité" href="cours.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="fr"/>
@@ -141,6 +142,8 @@
 <li class="toctree-l1"><a class="reference internal" href="activite_hanoi.html">Les tours de Hanoï</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cours.html">Récursivité</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Exercices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tp_fractale.html">TP : Les fractales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tp_sierpinsky.html">TP: tapis de Sierpiñsky</a></li>
 </ul>
 
     </div>
@@ -401,35 +404,29 @@ document.write(`
 <img alt="image" src="../_images/ex-mystere.jpg" />
 </figure>
 </li>
-<li><dl class="simple">
-<dt>Écrire une fonction binaire qui prend en paramètres un entier relatif <span class="math notranslate nohighlight">\(r\)</span> et un entier naturel <span class="math notranslate nohighlight">\(n\)</span> strictement positif, et qui renvoie la représentation en machine de <span class="math notranslate nohighlight">\(r\)</span> sur <span class="math notranslate nohighlight">\(n\)</span> bits.</dt><dd><p>La méthode utilisée est celle du complément à <span class="math notranslate nohighlight">\(2\)</span>.</p>
-</dd>
-</dl>
-<p>Déterminer l’écriture binaire sur <span class="math notranslate nohighlight">\(n\)</span> bits d’un nombre négatif
-<span class="math notranslate nohighlight">\(r\)</span> revient à déterminer l’écriture binaire du nombre positif
-<span class="math notranslate nohighlight">\(r+2^{n}\)</span>.</p>
-<p>Exemple de l’écriture binaire du nombre <span class="math notranslate nohighlight">\(-35\)</span> sur 7 bits :
-<span class="math notranslate nohighlight">\(-35+2^{7}=93=1011101_{2}\)</span>.</p>
+<li><p>Écrire une fonction binaire qui prend en paramètres un entier relatif <span class="math notranslate nohighlight">\(r\)</span> et un entier naturel <span class="math notranslate nohighlight">\(n\)</span> strictement positif, et qui renvoie la représentation en machine de <span class="math notranslate nohighlight">\(r\)</span> sur <span class="math notranslate nohighlight">\(n\)</span> bits. La méthode utilisée est celle du complément à <span class="math notranslate nohighlight">\(2\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Déterminer l’écriture binaire sur <span class="math notranslate nohighlight">\(n\)</span> bits d’un nombre négatif <span class="math notranslate nohighlight">\(r\)</span> revient à déterminer l’écriture binaire du nombre positif <span class="math notranslate nohighlight">\(r+2^{n}\)</span> (méthode du complément à 2)</p>
+<p>Exemple de l’écriture binaire du nombre <span class="math notranslate nohighlight">\(-35\)</span> sur 7 bits est <span class="math notranslate nohighlight">\(-35+2^{7}=93=1011101_{2}\)</span>.</p>
+</div>
 </li>
 </ol>
 </section>
 <section id="exercice-8">
 <span id="id7"></span><h2>Exercice<a class="headerlink" href="#exercice-8" title="Lien permanent vers cette rubrique">#</a></h2>
 <ol class="arabic">
-<li><p>Dans un idle (pyzo, thonny, python) saisir le programme ci-dessous et
-le tester:</p>
-<div class="center docutils container">
-<img alt="image" src="../_images/pgm-dessin-spirale.jpg" />
-</div>
+<li><p>Saisir le programme ci-dessous et le tester:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pgm-dessin-spirale.jpg"><img alt="image" src="../_images/pgm-dessin-spirale.jpg" style="width: 420px;" /></a>
+</figure>
 </li>
-<li><p>En donner une version récursive.</p></li>
+<li><p>Donner une version récursive de ce code et vérifier qu’il donne bien le même résultat.</p></li>
 </ol>
 </section>
 <section id="exercice-9">
 <span id="id8"></span><h2>Exercice<a class="headerlink" href="#exercice-9" title="Lien permanent vers cette rubrique">#</a></h2>
-<p>La fonction <strong>fibonacci(n)</strong>, qui doit son nom au mathématicien Leonardo
-Fibonacci, est définie récursivement, pout tout entier <span class="math notranslate nohighlight">\(n\)</span>, de la
-manière suivante:</p>
+<p>La fonction <code class="docutils literal notranslate"><span class="pre">fibonacci(n)</span></code>, qui doit son nom au mathématicien Leonardo Fibonacci, est définie récursivement, pout tout entier <span class="math notranslate nohighlight">\(n\)</span>, de la manière suivante:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
 \text{fibonnacci}(n)=\left\lbrace \begin{array}{ll}
@@ -441,7 +438,7 @@ manière suivante:</p>
 \end{aligned}\end{split}\]</div>
 <ol class="arabic simple">
 <li><p>Calculer fibonacci(5).</p></li>
-<li><p>Écrire en python cette fonction fibonacci.</p></li>
+<li><p>Écrire en python cette fonction <code class="docutils literal notranslate"><span class="pre">fibonacci</span></code>.</p></li>
 </ol>
 </section>
 </section>
@@ -465,6 +462,15 @@ manière suivante:</p>
         <p class="prev-next-subtitle">précédent</p>
         <p class="prev-next-title">Récursivité</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="tp_fractale.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TP : Les fractales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

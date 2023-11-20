@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Activité &#8212; NSI</title>
+    <title>TP : Les fractales &#8212; NSI</title>
   
   
   
@@ -45,11 +45,11 @@
     <script src="../_static/custom.js"></script>
     <script src="../_static/translations.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/activite_somme';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/tp_fractale';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="TP: tapis de Sierpiñsky" href="tp_sierpinsky.html" />
+    <link rel="prev" title="Exercices" href="exercice.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="fr"/>
   </head>
@@ -136,11 +136,11 @@
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="activite_hanoi.html">Les tours de Hanoï</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cours.html">Récursivité</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exercice.html">Exercices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tp_fractale.html">TP : Les fractales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TP : Les fractales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tp_sierpinsky.html">TP: tapis de Sierpiñsky</a></li>
 </ul>
 
@@ -196,7 +196,7 @@
       
       
       
-      <li><a href="../_sources/content/activite_somme.rst" target="_blank"
+      <li><a href="../_sources/content/tp_fractale.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Télécharger le fichier source"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +278,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activité</h1>
+    <h1>TP : Les fractales</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -288,8 +288,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-iterative">Programmation itérative</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-recursive">Programmation récursive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-flocon-de-von-koch">Le flocon de von Koch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#larbre">L’arbre</a></li>
 </ul>
             </nav>
         </div>
@@ -301,61 +301,55 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="activite">
-<h1>Activité<a class="headerlink" href="#activite" title="Lien permanent vers cette rubrique">#</a></h1>
-<p>On cherche à calculer la somme des premiers nombres entiers naturels sans utiliser la formule mathématique. On étendra
-cette somme à des nombres entiers issus d’une suite.</p>
-<section id="programmation-iterative">
-<h2>Programmation itérative<a class="headerlink" href="#programmation-iterative" title="Lien permanent vers cette rubrique">#</a></h2>
+  <section id="tp-les-fractales">
+<h1>TP : Les fractales<a class="headerlink" href="#tp-les-fractales" title="Lien permanent vers cette rubrique">#</a></h1>
+<p>Une figure fractale ou fractale est une courbe ou surface de forme irrégulière ou morcelée qui se crée en suivant des règles déterministes ou stochastiques impliquant une homothétie interne. Le terme « fractale » est un néologisme créé par Benoît Mandelbrot en 1974 à partir de la racine latine fractus, qui signifie brisé, irrégulier . Un des plus
+beaux exemples de fractale donné par la nature est le chou Romanesco:</p>
+<img alt="../_images/chou.jpg" class="margin-bottom-16 align-center" src="../_images/chou.jpg" />
+<p>Si l’on ne regarde qu’une des pointes, on a l’impression de voir un chou en entier. C’est le principe d’auto-similarité. On retrouve de l’auto-similarité dans les fougères (ci-dessous) : chaque feuille ressemble à la fougère entière.</p>
+<img alt="../_images/fougere.jpg" class="align-center" src="../_images/fougere.jpg" />
+<section id="le-flocon-de-von-koch">
+<h2>Le flocon de von Koch<a class="headerlink" href="#le-flocon-de-von-koch" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>Le flocon de von Koch est l’une des premières courbes fractales à avoir été décrite (bien avant l’invention du terme « fractal(e) »). Elle a été inventée en 1906 par le mathématicien suédois Helge von Koch.</p>
+<p>La courbe de von Koch se réalise à patir d’un segment de droite, en modifiant récursivement chaque segment de droite de la façon suivante :</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>On divise le segment de droite en trois segments de longueurs égales.</p></li>
+<li><p>On dessine les 4 morceaux de segments de longueur le tiers du segment
+en effectuant des rotations pour obtenir la forme.</p></li>
+<li><p>on recommence le processus sur chacun des 4 morceaux de segments.</p></li>
+</ol>
+</div></blockquote>
+<p>Au bout de ces trois étapes, l’objet résultant a une forme similaire à une section transversale d’un chapeau de sorcière. La courbe de von Koch est la limite des courbes obtenues, lorsqu’on répète indéfiniment les
+étapes mentionnées ci-avant.</p>
+<a class="reference internal image-reference" href="../_images/courbe_van_koch.png"><img alt="image" class="align-center" src="../_images/courbe_van_koch.png" style="width: 360px;" /></a>
+<p>Le <strong>flocon de von Koch</strong> s’obtient de la même façon que la fractale précédente, en partant d’un triangle équilatéral au lieu d’un segment de droite, et en effectuant les modifications en orientant les triangles vers l’extérieur.</p>
+<a class="reference internal image-reference" href="../_images/flocon_van_koch.jpg"><img alt="image" class="align-center" src="../_images/flocon_van_koch.jpg" style="width: 360px;" /></a>
+<ol class="arabic simple">
+<li><p>La fonction <strong>courbe_van_koch(n,l)</strong> prend en paramètre le nombre de répétitions du modèle obtenu lorsque n=1 et la longueur initiale l du segment. Cette fonction dessine la courbe de Van Koch.</p></li>
+<li><p>Écrire une fonction qui dessine le <strong>flocon de Van Koch</strong> à partir d’un triangle équilatéral.</p></li>
+<li><p>Récrire vos deux fonctions en y apportant les modifications nécessaires pour que le modèle initial ressemble à la figure suivante:</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/carre_van_koch.png"><img alt="image" class="align-center" src="../_images/carre_van_koch.png" style="width: 360px;" /></a>
 <ol class="arabic">
-<li><p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">somme_f</span></code> qui calcule la somme des <code class="docutils literal notranslate"><span class="pre">n</span></code> premiers nombres entiers positifs. La fonction prend
-en paramètre le nombre <code class="docutils literal notranslate"><span class="pre">n</span></code> et renvoie un nombre entier égal à la somme <span class="math notranslate nohighlight">\(1+2+3+...+n\)</span>.</p>
-<p>Cette fonction utilise une boucle bornée <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p>
+<li><p>Réaliser une fractale avec n=5.</p></li>
+<li><p>Construire une figure superposant les fractales pour n=0 jusqu’à n=5 (figure ci-dessous).</p>
+<a class="reference internal image-reference" href="../_images/carre_fractale_5.jpg"><img alt="image" class="align-center" src="../_images/carre_fractale_5.jpg" style="width: 360px;" /></a>
 </li>
-<li><p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">somme_w</span></code> qui calcule la somme des <code class="docutils literal notranslate"><span class="pre">n</span></code> premiers nombres entiers positifs. La fonction prend
-en paramètre le nombre <code class="docutils literal notranslate"><span class="pre">n</span></code> et renvoie un nombre entier égal à la somme <span class="math notranslate nohighlight">\(1+2+3+...+n\)</span>.</p>
-<p>Cette fonction utilise une boucle conditionnelle <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
-</li>
-<li><p>Vérifier dans les deux cas que la somme des 100 premiers nombres entiers vaut 5050.</p></li>
 </ol>
 </section>
-<section id="programmation-recursive">
-<h2>Programmation récursive<a class="headerlink" href="#programmation-recursive" title="Lien permanent vers cette rubrique">#</a></h2>
-<p>Il est possible de calculer cette somme sans utiliser de boucle. On donne le code de la fonction <code class="docutils literal notranslate"><span class="pre">somme_r</span></code> qui a pour
-paramètre le nombre <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somme_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">somme_r</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-<ol class="arabic">
-<li><p>Que renvoie l’appel <code class="docutils literal notranslate"><span class="pre">somme_r(1)</span></code> lorsque <code class="docutils literal notranslate"><span class="pre">n=1</span></code> ?</p></li>
-<li><p>Que renvoie l’appel <code class="docutils literal notranslate"><span class="pre">somme_r(2)</span></code> lorsque <code class="docutils literal notranslate"><span class="pre">n=2</span></code> ?</p></li>
-<li><p>Décrire l’enchainement d’appels des fonctions pour <code class="docutils literal notranslate"><span class="pre">n=3</span></code>.</p></li>
-<li><p>Ecrire le code de la fonction puis vérifier que la somme des 100 premiers nombres entiers est 5050.</p></li>
-<li><p>Modifier votre code pour calculer la somme des nombres pairs jusqu’à la valeur <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
-<ol class="loweralpha simple">
-<li><p>Vérifier que la somme des nombres pairs lorsque <code class="docutils literal notranslate"><span class="pre">n=100</span></code> est égale à 2550.</p></li>
-<li><p>Vérifier que la somme des nombres pairs lorsque <code class="docutils literal notranslate"><span class="pre">n=101</span></code> est aussi égale à 2550.
-Dans le cas contraire corriger votre code.</p></li>
-</ol>
+<section id="larbre">
+<h2>L’arbre<a class="headerlink" href="#larbre" title="Lien permanent vers cette rubrique">#</a></h2>
+<p>Reproduire cette fractale arborescente avec un niveau de récursivité égal à 5. Le motif initial est un Y.</p>
+<a class="reference internal image-reference" href="../_images/arbre_fractale.jpg"><img alt="image" class="align-center" src="../_images/arbre_fractale.jpg" style="width: 360px;" /></a>
+<p>Voici quelques indications :</p>
+<ul>
+<li><p>Commencer par les 3 premiers arbres représentés ci-dessous:</p>
+<a class="reference internal image-reference" href="../_images/arbre.png"><img alt="image" class="align-center" src="../_images/arbre.png" style="width: 420px;" /></a>
 </li>
-<li><p>On cherche à calculer la somme des nombres entiers en partant d’un nombre <span class="math notranslate nohighlight">\(n\)</span> donné telle que tous les termes
-de la somme sont :</p>
-<ul class="simple">
-<li><p>des nombres positifs inférieurs ou égaux à <span class="math notranslate nohighlight">\(n\)</span></p></li>
-<li><p>deux nombres consécutifs ont pour différence 3.</p></li>
+<li><p>Les angles de rotation sont de 30 degrés.</p></li>
+<li><p>Une fois le tracé d’un trait réalisé, il faut revenir en arrière avec la commande <code class="docutils literal notranslate"><span class="pre">backward()</span></code></p></li>
 </ul>
-<p>Par exemple:</p>
-<ul class="simple">
-<li><p>la somme à calculer pour <span class="math notranslate nohighlight">\(n=10\)</span> est <span class="math notranslate nohighlight">\(10+7+4+1\)</span></p></li>
-<li><p>la somme à calculer pour <span class="math notranslate nohighlight">\(n=8\)</span> est <span class="math notranslate nohighlight">\(8+5+2\)</span>.</p></li>
-</ul>
-<p>Créer la fonction récursive <code class="docutils literal notranslate"><span class="pre">somme_suite</span></code> qui a pour paramètre un nombre <code class="docutils literal notranslate"><span class="pre">n</span></code> et qui renvoie la somme demandée.</p>
-</li>
-</ol>
 </section>
 </section>
 
@@ -370,6 +364,24 @@ de la somme sont :</p>
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="exercice.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Exercices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tp_sierpinsky.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TP: tapis de Sierpiñsky</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -385,8 +397,8 @@ de la somme sont :</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-iterative">Programmation itérative</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-recursive">Programmation récursive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-flocon-de-von-koch">Le flocon de von Koch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#larbre">L’arbre</a></li>
 </ul>
   </nav></div>
 
