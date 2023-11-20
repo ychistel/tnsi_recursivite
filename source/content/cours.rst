@@ -58,7 +58,7 @@ Le code Python précédent peut être écrit autrement, avec une condition d'arr
            deplacer(D,A)
        else:
            # on applelle la résolution pour n-1 disques
-           tour_hanoi(n-1,D,I,A)
+           tour_hanoi(n-1,D,A,I)
            # on déplace le disque libéré de D vers A
            deplacer(D,A)
            # on appelle la résolution des n-1 disques en I vers A
